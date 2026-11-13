@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+@layer components {
+    .btn-brutal {
+        @apply inline-flex items-center justify-center px-6 py-3 font-mono font-bold uppercase tracking-wider border-2 border-pitch dark:border-paper transition-all duration-150;
+        box-shadow: 4px 4px 0 theme('colors.pitch');
+    }
+    .btn-brutal:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0 theme('colors.pitch');
+    }
+}

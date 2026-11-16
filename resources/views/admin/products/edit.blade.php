@@ -12,9 +12,18 @@
             <a href="{{ route('admin.products.index') }}" class="text-xs font-mono font-bold hover:text-lime-accent">← Kembali ke List</a>
         </div>
 
-        <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        @if ($errors->any())
+            <div class="mb-4 p-3 border-2 border-red-600 bg-red-100 text-red-800 text-xs font-mono">
+                <ul class="list-disc pl-4">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <form action="{{ route('admin.products.update.post', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
-            @method('PUT')
 
             <div>
                 <label class="block text-xs font-mono font-bold uppercase mb-1">Nama Produk *</label>
@@ -53,7 +62,7 @@
             <div class="flex items-center gap-4 p-4 border border-pitch dark:border-paper/20 bg-paper dark:bg-pitch">
                 <div class="w-16 h-16 border border-pitch flex-shrink-0 flex items-center justify-center overflow-hidden bg-white dark:bg-charcoal">
                     @if($product->image)
-                        <img src="{{ asset('storage/' . $product->image) }}" alt="Preview" class="w-full h-full object-contain">
+                        <img src="{{ Str::startsWith($product->image, 'images/') ? asset($product->image) : asset('storage/' . $product->image) }}" alt="Preview" class="w-full h-full object-contain">
                     @else
                         <span class="text-[9px] font-mono">NO IMG</span>
                     @endif

@@ -78,13 +78,13 @@ class ReportService
      */
     public function getTopProducts(int $limit = 10): Collection
     {
-        return Product::select('products.*')
+       return Product::select('products.id', 'products.name', 'products.price', 'products.image')
             ->selectRaw('SUM(order_items.quantity) as total_sold')
             ->selectRaw('SUM(order_items.subtotal) as total_revenue')
             ->join('order_items', 'products.id', '=', 'order_items.product_id')
             ->join('orders', 'order_items.order_id', '=', 'orders.id')
             ->whereNotIn('orders.status', ['cancelled'])
-            ->groupBy('products.id')
+            ->groupBy('products.id', 'products.name', 'products.price', 'products.image')
             ->orderByDesc('total_sold')
             ->limit($limit)
             ->get();

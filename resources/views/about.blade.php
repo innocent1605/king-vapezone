@@ -66,7 +66,7 @@
                     <div class="space-y-4 text-sm font-mono">
                         <div>
                             <span class="text-xs uppercase text-gray-400 block">Alamat Fisik:</span>
-                            <span class="font-bold text-paper">{{ $settings['address'] ?? 'Jl. Kemang Raya No. 88, Jakarta Selatan, DKI Jakarta 12730' }}</span>
+                            <span class="font-bold text-paper">Jl. Ciputat, Ciawigebang, Pos 45591</span>
                         </div>
                         <div>
                             <span class="text-xs uppercase text-gray-400 block">WhatsApp Penjualan:</span>

@@ -29,7 +29,7 @@
 
                     <div class="relative bg-white dark:bg-charcoal border-4 border-pitch p-6 aspect-square flex items-center justify-center overflow-hidden">
                         @if($product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
+                            <img src="{{ Str::startsWith($product->image, 'images/') ? asset($product->image) : asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
                         @else
                             <div class="flex flex-col items-center justify-center text-graphite dark:text-gray-400">
                                 <svg class="w-32 h-32 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">

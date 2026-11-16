@@ -86,7 +86,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // Products
+    // Products (Tambahan route POST khusus upload gambar agar aman di InfinityFree)
+    Route::post('/products/{id}/update', [AdminProductController::class, 'update'])->name('products.update.post');
     Route::resource('products', AdminProductController::class);
 
     // Categories
@@ -139,4 +140,5 @@ Route::middleware(['auth', 'role:kasir'])->prefix('kasir')->name('kasir.')->grou
     Route::get('/products', [KasirProductController::class, 'index'])->name('products.index');
     Route::get('/products/{product}/edit', [KasirProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [KasirProductController::class, 'update'])->name('products.update');
+    Route::post('/products/{id}/update', [KasirProductController::class, 'update'])->name('products.update.post');
 });

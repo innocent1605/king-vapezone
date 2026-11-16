@@ -26,7 +26,7 @@
                             <div class="flex items-center gap-4 w-full sm:w-auto">
                                 <div class="w-20 h-20 bg-paper dark:bg-surface-dark border-2 border-pitch flex-shrink-0 flex items-center justify-center p-2">
                                     @if($item->product->image)
-                                        <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-contain">
+                                        <img src="{{ Str::startsWith($item->product->image, 'images/') ? asset($item->product->image) : asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}" class="w-full h-full object-contain">
                                     @else
                                         <span class="font-mono text-xs font-bold">VAPE</span>
                                     @endif

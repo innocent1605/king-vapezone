@@ -57,7 +57,7 @@
                             <td class="p-3">
                                 <div class="w-12 h-12 border border-pitch bg-paper dark:bg-pitch flex items-center justify-center overflow-hidden">
                                     @if($product->image)
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
+                                        <img src="{{ Str::startsWith($product->image, 'images/') ? asset($product->image) : asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain">
                                     @else
                                         <span class="text-[9px] font-bold">NO IMG</span>
                                     @endif

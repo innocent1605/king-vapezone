@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Otomatis alihkan ke HTTPS
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Arahkan ke folder public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Blokir akses langsung ke file sensitif
+<Files .env>
+    Order allow,deny
+    Deny from all
+</Files>

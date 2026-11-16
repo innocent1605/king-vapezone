@@ -52,7 +52,7 @@
                 <div class="space-y-3 text-sm text-gray-300">
                     <p class="flex items-start gap-2">
                         <span class="text-lime-accent font-bold">📍</span>
-                        <span>{{ $siteSettings['address'] ?? 'Jl. Kemang Raya No. 88, Jakarta Selatan' }}</span>
+                        <span>Jl. Ciputat, Ciawigebang, Pos 45591</span>
                     </p>
                     <p class="flex items-center gap-2">
                         <span class="text-lime-accent font-bold">💬</span>
@@ -72,8 +72,8 @@
 
         <!-- Bottom bar -->
         <div class="border-t border-paper/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 font-mono">
-            <p>© {{ date('Y') }} KING VAPEZONE. All rights reserved. Tugas Besar Cyber Security Web App.</p>
-            <p class="mt-2 sm:mt-0">DIBANGUN DENGAN <span class="text-lime-accent font-bold">LARAVEL 11</span> & NEO-BRUTALISM</p>
+            <p>© {{ date('Y') }} KING VAPEZONE. All rights reserved.</p>
+            <p class="mt-2 sm:mt-0">OFFICIAL STORE — <span class="text-lime-accent font-bold">AUTHENTIC & BERCUKAI RESMI</span></p>
         </div>
     </div>
 </footer>

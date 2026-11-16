@@ -3,7 +3,7 @@
     <!-- Card Header / Image Container -->
     <div class="relative bg-paper dark:bg-surface-dark border-b-2 border-pitch dark:border-paper/20 aspect-square overflow-hidden flex items-center justify-center p-4">
         @if($product->image)
-            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
+            <img src="{{ Str::startsWith($product->image, 'images/') ? asset($product->image) : asset('storage/' . $product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300">
         @else
             <!-- Stylized Vape Graphic Placeholder -->
             <div class="flex flex-col items-center justify-center text-graphite dark:text-gray-400">

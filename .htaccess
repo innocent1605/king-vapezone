@@ -1,22 +1,30 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Otomatis alihkan ke HTTPS
+    # Otomatis alihkan HTTP ke HTTPS
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteCond %{HTTPS} off
     RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-    # Arahkan ke folder public
+    # Arahkan seluruh permintaan ke folder public Laravel
     RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
 
-<Files .env>
-    Order allow,deny
-    Deny from all
-</Files>
+# Penerapan HTTP Security Headers (Untuk memperbaiki nilai F di SecurityHeaders.com)
+<IfModule mod_headers.c>
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+    Header always set Content-Security-Policy "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval';"
+</IfModule>
 
-# Blokir akses langsung ke file sensitif
-<Files .env>
+# Blokir akses langsung ke file sensitif (.env, .git, composer)
+<FilesMatch "^\.env|\.git|composer\.(json|lock)|package(-lock)?\.json">
     Order allow,deny
     Deny from all
-</Files>
+</FilesMatch>
+
+# Matikan directory browsing agar struktur folder tidak bisa diintip
+Options -Indexes

@@ -42,7 +42,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:8|confirmed',
             'phone' => 'nullable|string|max:20',
             'role' => 'required|in:admin,kasir,pelanggan',
             'address' => 'nullable|string',
@@ -52,7 +52,7 @@ class UserController extends Controller
             'email.email' => 'Format email tidak valid.',
             'email.unique' => 'Email ini sudah terdaftar.',
             'password.required' => 'Password wajib diisi.',
-            'password.min' => 'Password minimal 6 karakter.',
+            'password.min' => 'Password minimal 8 karakter.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
             'role.required' => 'Pilih peran/role pengguna.',
             'role.in' => 'Role tidak valid.',

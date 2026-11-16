@@ -15,9 +15,8 @@
             <a href="{{ route('kasir.products.index') }}" class="text-xs font-mono font-bold hover:text-lime-accent">← Kembali</a>
         </div>
 
-        <form action="{{ route('kasir.products.update', $product->slug) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+        <form action="{{ route('kasir.products.update.post', $product->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
-            @method('PUT')
 
             <div>
                 <label class="block text-xs font-mono font-bold uppercase mb-1">Nama Produk *</label>

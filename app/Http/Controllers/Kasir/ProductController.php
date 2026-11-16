@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Kasir;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -35,16 +35,38 @@ class ProductController extends Controller
         return view('kasir.products.edit', compact('product', 'categories'));
     }
 
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $data = $request->validated();
+        $product = Product::where('id', $id)->orWhere('slug', $id)->firstOrFail();
+
+        $data = $request->validate([
+            'name'        => 'required|string|max:255',
+            'category_id' => 'required|exists:categories,id',
+            'price'       => 'required|numeric|min:0',
+            'stock'       => 'required|integer|min:0',
+            'description' => 'required|string',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+        ]);
+
         $data['is_active'] = $request->boolean('is_active', true);
 
         if ($request->hasFile('image')) {
+            if ($product->image && File::exists(public_path($product->image))) {
+                File::delete(public_path($product->image));
+            }
             if ($product->image && Storage::disk('public')->exists($product->image)) {
                 Storage::disk('public')->delete($product->image);
             }
-            $data['image'] = $request->file('image')->store('products', 'public');
+
+            $destinationPath = public_path('images/products');
+            if (!File::exists($destinationPath)) {
+                File::makeDirectory($destinationPath, 0755, true);
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->move($destinationPath, $filename);
+            $data['image'] = 'images/products/' . $filename;
         }
 
         $product->update($data);

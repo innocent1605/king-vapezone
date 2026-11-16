@@ -4,7 +4,7 @@ Proyek Tugas Besar Pengembangan & Pengamanan Aplikasi Web — Mata Kuliah: **Cyb
 Dibangun dengan arsitektur **Laravel 10**, **PHP 8.1 / 8.3**, **MySQL**, serta mengusung filosofi desain visual modern **Neo-Brutalism Enterprise** (High Contrast, Acid Lime `#D4FF00`, Off-White Paper, Charcoal Black).
 
 * **URL Repository Git:** [https://github.com/innocent1605/king-vapezone](https://github.com/innocent1605/king-vapezone)
-* **URL Aplikasi Aktif (Produksi):** *TBD (Akan diperbarui setelah proses deployment)*
+* **URL Aplikasi Aktif (Produksi):** [https://king-vapezone.gamer.gd](https://king-vapezone.gamer.gd)
 
 ---
 
